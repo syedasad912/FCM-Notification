@@ -25,10 +25,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         String title = Objects.requireNonNull(remoteMessage.getNotification()).getTitle();
         String body = remoteMessage.getNotification().getBody();
 
-        Map<String, String> extraData = remoteMessage.getData();
-
-        String brandId = extraData.get("brandId");
-        String category = extraData.get("category");
 
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, "ImageFCM")
@@ -37,15 +33,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         .setSmallIcon(R.drawable.ic_launcher_background);
 
         Intent intent;
-//        if (category.equals("shoes")) {
         intent = new Intent(this, ReceiveNotificationActivity.class);
-
-//        } else {
-//            intent = new Intent(this, ReceiveNotificationActivity.class);
-
-//        }
-//        intent.putExtra("brandId", brandId);
-//        intent.putExtra("category", category);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 10, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 

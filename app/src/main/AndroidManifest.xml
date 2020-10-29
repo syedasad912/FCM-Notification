@@ -28,7 +28,6 @@
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/teal_700" />
 
-        <activity android:name=".UserPanel" />
         <activity android:name=".Notifications.ReceiveNotificationActivity" />
         <activity android:name=".AdminPanel" />
         <activity android:name=".MainActivity">

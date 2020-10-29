@@ -19,11 +19,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -167,32 +164,16 @@ public class AdminPanel extends AppCompatActivity {
             notificationObj.put("title", "Admin uploaded an image.");
             notificationObj.put("body", "click to check it out!");
 
-//            JSONObject extraData = new JSONObject();
-//            extraData.put("brandId", "puma");
-//            extraData.put("category", "Shoes");
-
 
             json.put("notification", notificationObj);
-//            json.put("data", extraData);
 
 
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL,
                     json,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-
-                            Log.d("MUR", "onResponse: ");
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.d("MUR", "onError: " + error.networkResponse);
-                }
-            }
+                    response -> Log.d("MUR", "onResponse: "), error -> Log.d("MUR", "onError: " + error.networkResponse)
             ) {
                 @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
+                public Map<String, String> getHeaders() {
                     Map<String, String> header = new HashMap<>();
                     header.put("content-type", "application/json");
                     header.put("authorization", "key=AAAAn8BjkAA:APA91bHlWw4gViSTm5YBKdONavk0K43q7CTye9SVM5o8SmSfYOegtIIvCW2OZsYiwp6dkPGAKMrqLlGEumcV__jk6PkfUAxTT827YV-6R3JwbUGgwJ_tGWQ0ELEUarLR902SYay1Dg7T");

@@ -29,27 +29,13 @@ public class ReceiveNotificationActivity extends AppCompatActivity {
         mPgBar2 = findViewById(R.id.mPgBar2);
         firebaseAuth = FirebaseAuth.getInstance();
 
-//        TextView categotyTv = findViewById(R.id.category);
-//        TextView brandTv = findViewById(R.id.brand);
-
-//        if (getIntent().hasExtra("category")) {
-//            String category = getIntent().getStringExtra("category");
-//            String brand = getIntent().getStringExtra("brandId");
-//            categotyTv.setText(category);
-//            brandTv.setText(brand);
-//        }
-
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
         storageReference.child("images").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                // Using "Picasso" (http://square.github.io/picasso/) after adding the dependency in the Gradle.
-                // ".fit().centerInside()" fits the entire image into the specified area.
-                // Finally, add "READ" and "WRITE" external storage permissions in the Manifest.
                 Picasso.get().load(uri).fit().centerInside().into(iv_load);
                 mPgBar2.setVisibility(View.GONE);
                 Toast.makeText(ReceiveNotificationActivity.this, "Loading Image.....", Toast.LENGTH_SHORT).show();
-//                Picasso.get().load(uri).fit().transform(new BlurTransformation(getContext(), 25, 1)).into(profileBackgroundImage);
 
 
             }

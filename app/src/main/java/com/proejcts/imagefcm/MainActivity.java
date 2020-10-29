@@ -39,11 +39,8 @@ public class MainActivity extends AppCompatActivity {
                     if (!task.isSuccessful()) {
                         Toast.makeText(MainActivity.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
                     } else {
-//                        if (email.equals("admin@gmail.com") && pass.equals("12345678")) {
                         startActivity(new Intent(MainActivity.this, AdminPanel.class));
-//                        } else {
-//                            startActivity(new Intent(MainActivity.this, UserPanel.class));
-//                        }
+//
                     }
                 }
             });
@@ -53,13 +50,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-//        firebaseAuth.addAuthStateListener(authStateListener);
-        //if the user is already signed in
-        //we will close this activity
-        //and take the user to profile activity
         if (firebaseAuth.getCurrentUser() != null) {
             finish();
-//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentUserProfile()).commit();
             startActivity(new Intent(this, AdminPanel.class));
         }
 
